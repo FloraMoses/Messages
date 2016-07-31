@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+    <script type="text/javascript" href="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" href="{% static 'js/jquery.min.js' %}"></script>
+    <style>
+    input[type="text"] {
+    color:black;
+        width: 300px;
+}
+    input[type="password"] {
+    color:black;
+        width: 300px;
+}
+    input[type="email"] {
+    color:black;
+        width: 300px;
+}
+</style>
+</head>
+<body style="background-color: black">
+<h1 style="text-align: center; color: white;" class="h1"></h1>
+<br><br><br>
+<div style="text-align: center; width: 700px; height: auto; position: absolute; left: 345px;">
+<form class="form-horizontal" method="post" action="/start/viewcategories/">{% csrf_token %}
+    <fieldset>
+        <legend style="color: white; font-size:45px;">Login</legend><br>
+        {% for field in form %}
+            {% if field.errors %}
+                <div class="control-group error" style="color: white">
+                    <label class="control-label" style="color:white;">{{ field.label }}</label>
+                    <div class="controls" style="color:white;">{{ field }}
+                        <span class="help-inline" style="color: white;">
+                            {% for error in  field.errors %}{{ error }}{% endfor %}
+                        </span>
+                    </div>
+                </div>
+            {% else %}
+                <div class="control-group" style="color:white;">
+                    <label class="control-label" style="color:white; font-size: medium">{{ field.label }}</label>
+                    <div class="controls" style="color:white;">{{ field }}
+                        {% if field.help_text %}
+                            <p class="help-inline"><small>{{ field.help_text }}</small></p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+            <br>
+        {% endfor %}
+    </fieldset>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-lg btn-success" >Login</button>
+    </div>
+</form><br> <br>
+<h2 style="color: white">New user? <a href="/start/register_user/" style="color: springgreen">Sign Up here</a></h2>
+</div>
+</body>
+</html>
