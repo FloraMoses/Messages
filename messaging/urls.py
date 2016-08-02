@@ -15,12 +15,12 @@ urlpatterns = [
     url(r'^category/delete/(?P<pk>[0-9]+)/$', CategoryDeleteView.as_view(), name="delete_category"),
 
     url(r'^message/create/$', MessageCreateForm.as_view(), name="create_message"),
-    url(r'^message/view/$', MessageView.as_view(), name="view_message"),
+    url(r'^message/view/(?P<cat_id>[0-9]+)/$', MessageView.as_view(), name="view_message"),
     url(r'^message/update/(?P<pk>[0-9]+)/$', MessageUpdateView.as_view(), name="update_message"),
     url(r'^message/delete/(?P<pk>[0-9]+)/$', MessageDeleteView.as_view(), name="delete_message"),
 
     url(r'^reply/create/$', ReplyCreateForm.as_view(), name="create_reply"),
-    url(r'^reply/view/$', ReplyView.as_view(), name="view_reply"),
+    url(r'^reply/view/(?P<msg_id>[0-9]+)/$', ReplyView.as_view(), name="view_reply"),
     url(r'^reply/update/(?P<pk>[0-9]+)/$', ReplyUpdateView.as_view(), name="update_reply"),
     url(r'^reply/delete/(?P<pk>[0-9]+)/$', ReplyDeleteView.as_view(), name="delete_reply"),
 ]

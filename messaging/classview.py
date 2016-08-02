@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, resolve
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from messaging.forms import UserCreateForm
@@ -41,24 +41,29 @@ class ReplyCreateForm(CreateView):
 
 class ReplyView(ListView):
     model = Reply
+    def get_queryset(self):
+        msg_id = self.kwargs.get('msg_id')
+        return Reply.objects.all().filter(msg_id=msg_id)
 
 class CategoryView(ListView):
     model = Category
 
 class MessageView(ListView):
     model = Message
+    def get_queryset(self):
+        cat_id = self.kwargs.get('cat_id')
+        return Message.objects.all().filter(category_id=cat_id)
 
 class CategoryUpdateView(UpdateView):
     model = Category
     fields = ['category_name']
-    def get_success_url(self):
-        return reverse('view_categories')
+    success_url = "/start/viewcategories"
 
 class MessageUpdateView(UpdateView):
     model = Message
     fields = ['msg_text']
     def get_success_url(self):
-        return reverse('view_message')
+        return reverse('view_categories')
 
 class ReplyUpdateView(UpdateView):
     model = Reply

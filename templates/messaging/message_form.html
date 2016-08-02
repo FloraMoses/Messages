@@ -27,7 +27,7 @@
     <div style="text-align: center; width: 700px; height: auto; position: absolute; left: 345px;">
 <form class="form-horizontal" method="post">{% csrf_token %}
     <fieldset>
-        <legend style="color: white; font-size:xx-large">Enter Message</legend><br>
+        <legend style="color: white; font-size:xx-large">Message</legend><br>
         {% for field in form %}
             {% if field.errors %}
                 <div class="control-group error" style="color: white">
