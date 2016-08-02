@@ -2,9 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Reply Delete</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+    <script type="text/javascript" href="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" href="{% static 'js/jquery.min.js' %}"></script>
+    <style>
+    input[type="text"] {
+    color:black;
+        width: 300px;
+}
+    input[type="password"] {
+    color:black;
+        width: 300px;
+}
+    input[type="email"] {
+    color:black;
+        width: 300px;
+}
+</style>
 </head>
-<body>
-
+<body style="background-color: black">
+<h1 style="text-align: center; color: white;" class="h1"></h1>
+    <div style="text-align: center; width: 700px; height: auto; position: absolute; left: 345px;">
+<form class="form-horizontal" method="post" action="/start/reply/view/">{% csrf_token %}
+    <fieldset>
+        <legend style="color: white; font-size:xx-large">Delete</legend><br>
+        <label class="control-label" style="color:white; font-size: 20px;">Are you sure you want to delete <div style="color: greenyellow">"{{ object.msg_text }}"</div></label><br><br>
+    </fieldset>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-lg btn-success" >Confirm</button>
+        <button type="cancel" class="btn btn-lg btn-danger" onclick="/start/reply/view/">Cancel</button>
+    </div>
+</form>
+</div>
 </body>
 </html>

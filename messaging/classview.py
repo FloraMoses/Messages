@@ -65,7 +65,7 @@ class ReplyUpdateView(UpdateView):
     fields = ['reply_text']
     def get_success_url(self):
         return reverse('view_reply')
- 
+
 class CategoryDeleteView(DeleteView):
     model = Category
     def get_success_url(self):
